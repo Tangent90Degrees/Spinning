@@ -11,7 +11,7 @@ public:
     ~application();
 
 private:
-    render __render;
+    Render __render;
 };
 
 ENGINE_HEADER_END

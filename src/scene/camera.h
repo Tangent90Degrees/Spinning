@@ -6,28 +6,28 @@
 
 ENGINE_HEADER_BEGIN
 
-struct viewport_point {
-    constexpr viewport_point(const buffer_index &index, real depth)
+struct ViewportPoint {
+    constexpr ViewportPoint(const BufferIndex &index, Real depth)
         : index(index), depth(depth) {}
 
-    buffer_index index;
-    real depth;
+    BufferIndex index;
+    Real depth;
 };
 
-class camera : public scene_object {
+class Camera : public SceneObject {
 public:
-    camera(int width, int height, real lens,
-           const vec &position = 0,
-           const mat &rotation = 1);
+    Camera(Size width, Size height, Real lens,
+           const Vec &position = 0,
+           const Mat &rotation = 1);
 
-    int width, height;
-    real lens;
+    Size width, height;
+    Real lens;
 
-    viewport_point local_to_viewport(const vec &local_point) const;
-    viewport_point world_to_viewport(const vec &world_point) const;
+    ViewportPoint local_to_viewport(const Vec &local_point) const;
+    ViewportPoint world_to_viewport(const Vec &world_point) const;
 
-    ray viewport_to_local_ray(const buffer_index &viewport_point, real row_offset = 0, real col_offset = 0) const;
-    ray viewport_to_world_ray(const buffer_index &viewport_point, real row_offset = 0, real col_offset = 0) const;
+    Ray viewport_to_local_ray(const BufferIndex &viewport_point, Real row_offset = 0, Real col_offset = 0) const;
+    Ray viewport_to_world_ray(const BufferIndex &viewport_point, Real row_offset = 0, Real col_offset = 0) const;
 };
 
 ENGINE_HEADER_END

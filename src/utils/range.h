@@ -8,14 +8,14 @@ ENGINE_HEADER_BEGIN
 struct Range {
 
     struct Iterator {
-        constexpr Iterator(int current, int step)
+        constexpr Iterator(Int current, Int step)
             : __current(current), __step(step) {}
 
-        constexpr bool operator!=(const Iterator &other) const {
+        constexpr Bool operator!=(const Iterator &other) const {
             return __current != other.__current;
         }
 
-        constexpr int operator*() const {
+        constexpr Int operator*() const {
             return __current;
         }
 
@@ -25,13 +25,13 @@ struct Range {
         }
 
     private:
-        int __current, __step;
+        Int __current, __step;
     };
 
-    constexpr Range(int start, int end, int step = 1)
+    constexpr Range(Int start, Int end, Int step = 1)
         : __start(start), __step(step), __num_of_steps((end - start) / step) {}
 
-    constexpr Range(int end)
+    constexpr Range(Int end)
         : Range(0, end, 1) {}
 
     constexpr Iterator begin() const {

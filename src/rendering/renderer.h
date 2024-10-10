@@ -7,18 +7,18 @@
 
 ENGINE_HEADER_BEGIN
 
-constexpr size_t MAX_WIDTH = 208;
-constexpr size_t MAX_HEIGHT = 65;
-
-class render {
+class Render {
 public:
-    buffer<real, MAX_HEIGHT, MAX_WIDTH> depth_buffer;
-    buffer<char, MAX_HEIGHT, MAX_WIDTH> pixel_buffer;
+    static constexpr Size MAX_WIDTH = 208;
+    static constexpr Size MAX_HEIGHT = 65;
 
-    size_t width;
-    size_t height;
+    Buffer<Real, MAX_HEIGHT, MAX_WIDTH> depth_buffer;
+    Buffer<char, MAX_HEIGHT, MAX_WIDTH> pixel_buffer;
 
-    render(size_t width, size_t height, char background_pixel = ' ')
+    Size width;
+    Size height;
+
+    Render(Size width, Size height, char background_pixel = ' ')
         : depth_buffer{0}, width(width), height(height) {
         pixel_buffer.fill(background_pixel);
         printf("\x1b[2J");
@@ -29,7 +29,7 @@ public:
         pixel_buffer.fill(background_pixel);
     }
 
-    void put(buffer_index index, real depth, char pixel) {
+    void put(BufferIndex index, Real depth, char pixel) {
         if (pixel_buffer.in_range(index) && depth > depth_buffer[index]) {
             depth_buffer[index] = depth;
             pixel_buffer[index] = pixel;
@@ -39,8 +39,8 @@ public:
     void draw_buffer() const {
         // printf("\x1b[H");
         system("clear");
-        for (size_t row = 0; row < height; ++row) {
-            for (size_t col = 0; col <= width; ++col) {
+        for (auto row : Range(height)) {
+            for (auto col : Range(width + 1)) {
                 putchar(col ? pixel_buffer[row][col] : 10);
             }
         }

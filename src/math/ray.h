@@ -5,15 +5,15 @@
 
 ENGINE_HEADER_BEGIN
 
-struct ray_hit_info {
+struct RayHitInfo {
 
-    constexpr ray_hit_info(real depth, const vec &normal)
+    constexpr RayHitInfo(Real depth, const Vec &normal)
         : depth(depth), normal(normal) {}
 
-    real depth;
-    vec normal;
+    Real depth;
+    Vec normal;
 
-    constexpr ray_hit_info &operator|=(const ray_hit_info &right) {
+    constexpr RayHitInfo &operator|=(const RayHitInfo &right) {
         if (right.depth > depth) {
             depth = right.depth;
             normal = right.normal;
@@ -22,15 +22,15 @@ struct ray_hit_info {
     }
 };
 
-struct ray {
+struct Ray {
 
-    constexpr ray(const vec &origin, const vec &direction)
+    constexpr Ray(const Vec &origin, const Vec &direction)
         : origin(origin), direction(direction) {}
 
-    vec origin;
-    vec direction;
+    Vec origin;
+    Vec direction;
 
-    constexpr vec operator()(real time) const {
+    constexpr Vec operator()(Real time) const {
         return origin + direction * time;
     }
 };

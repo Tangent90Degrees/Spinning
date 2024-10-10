@@ -5,15 +5,12 @@
 
 ENGINE_HEADER_BEGIN
 
-class mesh : public scene_object {
+class Mesh : public SceneObject {
 public:
-    mesh(const vec &position = 0, const mat &rotation = 1)
-        : scene_object(position, rotation) {}
+    Mesh(const Vec &position = 0, const Mat &rotation = 1)
+        : SceneObject(position, rotation) {}
 
-    virtual ray_hit_info hit_ray(const ray &local_ray) const = 0;
-
-protected:
-    static ray_hit_info hit_ray_on_face(const ray &local_ray, const vec &face_normal, real face_shift);
+    virtual RayHitInfo hit_ray(const Ray &local_ray) const = 0;
 };
 
 ENGINE_HEADER_END

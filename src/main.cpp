@@ -6,25 +6,25 @@
 #include "rendering/renderer.h"
 #include <sys/ioctl.h>
 
-using namespace engine;
+using namespace Engine;
 
-buffer_index get_window_size() {
+BufferIndex get_window_size() {
     winsize window_size;
     ioctl(fileno(stdout), TIOCGWINSZ, &window_size);
-    return buffer_index(window_size.ws_row, window_size.ws_col);
+    return BufferIndex(window_size.ws_row, window_size.ws_col);
 }
 
 int main() {
-    render render(160, 44);
+    Render render(160, 44);
 
-    real a, b, c;
+    Real a, b, c;
 
     // sphere spinning_obj(15);
     // cube spinning_obj(30);
-    octahedron spinning_obj(30);
+    Octahedron spinning_obj(30);
     // donut spinning_obj(15, 5);
-    camera cam(160, 44, 40, {0, 0, -60});
-    constexpr vec light = normalized({-2, -1, 3});
+    Camera cam(160, 44, 40, {0, 0, -60});
+    constexpr Vec light = normalized({-2, -1, 3});
 
     while (true) {
         render.clear();

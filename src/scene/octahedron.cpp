@@ -2,11 +2,11 @@
 
 ENGINE_HEADER_BEGIN
 
-octahedron::octahedron(real radius, const vec &position, const mat &rotation)
-    : mesh(position, rotation), __radius(radius) {}
+Octahedron::Octahedron(Real radius, const Vec &position, const Mat &rotation)
+    : Mesh(position, rotation), __radius(radius) {}
 
-ray_hit_info octahedron::hit_ray(const ray &local_ray) const {
-    ray_hit_info res = {0, 0};
+RayHitInfo Octahedron::hit_ray(const Ray &local_ray) const {
+    RayHitInfo res = {0, 0};
     res |= hit_ray_on_face(local_ray, {1, 1, 1});
     res |= hit_ray_on_face(local_ray, {1, 1, -1});
     res |= hit_ray_on_face(local_ray, {1, -1, 1});
@@ -18,12 +18,12 @@ ray_hit_info octahedron::hit_ray(const ray &local_ray) const {
     return res;
 }
 
-ray_hit_info octahedron::hit_ray_on_face(const ray &local_ray, const vec &face_normal) const {
-    real k = dot(face_normal, local_ray.direction);
+RayHitInfo Octahedron::hit_ray_on_face(const Ray &local_ray, const Vec &face_normal) const {
+    Real k = dot(face_normal, local_ray.direction);
     if (k == 0)
         return {0, 0};
 
-    real time = (__radius - dot(face_normal, local_ray.origin)) / k;
+    Real time = (__radius - dot(face_normal, local_ray.origin)) / k;
     if (time < 0)
         return {0, 0};
 

@@ -6,23 +6,23 @@
 
 ENGINE_HEADER_BEGIN
 
-class scene_object {
+class SceneObject {
 public:
-    scene_object(const scene_object &) = delete;
-    virtual ~scene_object() = default;
+    SceneObject(const SceneObject &) = delete;
+    virtual ~SceneObject() = default;
 
-    vec position;
-    mat rotation;
+    Vec position;
+    Mat rotation;
 
-    vec local_to_world(const vec &local_point) const;
-    vec world_to_local(const vec &world_point) const;
+    Vec local_to_world(const Vec &local_point) const;
+    Vec world_to_local(const Vec &world_point) const;
 
-    ray local_to_world(const ray &local_ray) const;
-    ray world_to_local(const ray &world_ray) const;
+    Ray local_to_world(const Ray &local_ray) const;
+    Ray world_to_local(const Ray &world_ray) const;
 
 protected:
-    scene_object(const vec &position = 0,
-                 const mat &rotation = 1);
+    SceneObject(const Vec &position = 0,
+                const Mat &rotation = 1);
 };
 
 ENGINE_HEADER_END

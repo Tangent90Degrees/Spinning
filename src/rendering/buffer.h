@@ -6,8 +6,8 @@
 
 ENGINE_HEADER_BEGIN
 
-struct BufferIndex {
-    constexpr BufferIndex(Int row, Int col)
+struct BufferCoord {
+    constexpr BufferCoord(Int row, Int col)
         : row(row), col(col) {}
 
     Int row, col;
@@ -22,8 +22,8 @@ struct Buffer {
     constexpr auto &operator[](Index row) { return __data[row]; }
     constexpr auto &operator[](Index row) const { return __data[row]; }
 
-    constexpr Data &operator[](BufferIndex index) { return __data[index.row][index.col]; }
-    constexpr Data operator[](BufferIndex index) const { return __data[index.row][index.col]; }
+    constexpr Data &operator[](BufferCoord index) { return __data[index.row][index.col]; }
+    constexpr Data operator[](BufferCoord index) const { return __data[index.row][index.col]; }
 
     constexpr Iterator begin() { return __data; }
     constexpr ConstIterator begin() const { return __data; }
@@ -35,7 +35,7 @@ struct Buffer {
         memset(__data, bit, ROWS * COLS * sizeof(Data));
     }
 
-    constexpr Bool in_range(BufferIndex index) const {
+    constexpr Bool in_range(BufferCoord index) const {
         return index.row >= 0 && index.col >= 0 && index.row < ROWS && index.col < COLS;
     }
 

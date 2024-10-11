@@ -29,7 +29,7 @@ public:
         pixel_buffer.fill(background_pixel);
     }
 
-    void put(BufferIndex index, Real depth, char pixel) {
+    void put(BufferCoord index, Real depth, char pixel) {
         if (pixel_buffer.in_range(index) && depth > depth_buffer[index]) {
             depth_buffer[index] = depth;
             pixel_buffer[index] = pixel;

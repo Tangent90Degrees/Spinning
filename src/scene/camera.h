@@ -7,10 +7,10 @@
 ENGINE_HEADER_BEGIN
 
 struct ViewportPoint {
-    constexpr ViewportPoint(const BufferIndex &index, Real depth)
+    constexpr ViewportPoint(const BufferCoord &index, Real depth)
         : index(index), depth(depth) {}
 
-    BufferIndex index;
+    BufferCoord index;
     Real depth;
 };
 
@@ -26,8 +26,8 @@ public:
     ViewportPoint local_to_viewport(const Vec &local_point) const;
     ViewportPoint world_to_viewport(const Vec &world_point) const;
 
-    Ray viewport_to_local_ray(const BufferIndex &viewport_point, Real row_offset = 0, Real col_offset = 0) const;
-    Ray viewport_to_world_ray(const BufferIndex &viewport_point, Real row_offset = 0, Real col_offset = 0) const;
+    Ray viewport_to_local_ray(const BufferCoord &viewport_point, Real row_offset = 0, Real col_offset = 0) const;
+    Ray viewport_to_world_ray(const BufferCoord &viewport_point, Real row_offset = 0, Real col_offset = 0) const;
 };
 
 ENGINE_HEADER_END

@@ -8,10 +8,10 @@
 
 using namespace Engine;
 
-BufferIndex get_window_size() {
+BufferCoord get_window_size() {
     winsize window_size;
     ioctl(fileno(stdout), TIOCGWINSZ, &window_size);
-    return BufferIndex(window_size.ws_row, window_size.ws_col);
+    return BufferCoord(window_size.ws_row, window_size.ws_col);
 }
 
 int main() {
@@ -20,8 +20,8 @@ int main() {
     Real a, b, c;
 
     // sphere spinning_obj(15);
-    // cube spinning_obj(30);
-    Octahedron spinning_obj(30);
+    Cube spinning_obj(30);
+    // Octahedron spinning_obj(30);
     // donut spinning_obj(15, 5);
     Camera cam(160, 44, 40, {0, 0, -60});
     constexpr Vec light = normalized({-2, -1, 3});

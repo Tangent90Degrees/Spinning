@@ -47,7 +47,7 @@ struct Vec {
     /// @brief Accesses an coordinate of a specified axis.
     /// @param index Index of axis of coordinate to access.
     /// @return A reference to the entry of the coordinates at axis `index`.
-    Real &operator[](Index index) {
+    constexpr Real &operator[](Index index) {
         _LIBCPP_ASSERT(index < DIM, "Index out of bounds");
         return __entries[index];
     }

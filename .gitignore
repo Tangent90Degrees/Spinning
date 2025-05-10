@@ -33,7 +33,7 @@
 
 # IDE Configurations
 .vscode/
-.DS_Store
+.idea/
 
 # Compiled
 build/
